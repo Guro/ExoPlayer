@@ -1,0 +1,56 @@
+From 365c0ffeaf3ec20b145e86ea90a90e0683fd5827 Mon Sep 17 00:00:00 2001
+From: Guro Khundadze <gurrok@gmail.com>
+Date: Wed, 17 Jun 2015 22:52:21 +0400
+Subject: [PATCH] Play streams without end-list tags from beginning
+
+---
+ demo/src/main/java/com/google/android/exoplayer/demo/Samples.java   | 4 ++++
+ .../main/java/com/google/android/exoplayer/hls/HlsChunkSource.java  | 6 ++++++
+ 2 files changed, 10 insertions(+)
+
+diff --git a/demo/src/main/java/com/google/android/exoplayer/demo/Samples.java b/demo/src/main/java/com/google/android/exoplayer/demo/Samples.java
+index 58184bc..55bc64a 100644
+--- a/demo/src/main/java/com/google/android/exoplayer/demo/Samples.java
++++ b/demo/src/main/java/com/google/android/exoplayer/demo/Samples.java
+@@ -42,6 +42,8 @@ import java.util.Locale;
+ 
+   }
+ 
++
++
+   public static final Sample[] YOUTUBE_DASH_MP4 = new Sample[] {
+     new Sample("Google Glass",
+         "http://www.youtube.com/api/manifest/dash/id/bf5bb2419360daf1/source/youtube?"
+@@ -111,6 +113,8 @@ import java.util.Locale;
+   };
+ 
+   public static final Sample[] HLS = new Sample[] {
++    new Sample("MYVIDEO",
++                  "http://tbs03-edge04.itdc.ge/rustavi2hqnew/index-1434549600-now.m3u8?token=S_fYuWagw4JVnjvb6F-c-uY1C1zaC2LSfAQJ3x6EHF5zs2rDDJDN85jtQQs84gufnvn7eZ1NiT9mf3Qv3CnmnQ", PlayerActivity.TYPE_HLS),
+     new Sample("Apple master playlist",
+         "https://devimages.apple.com.edgekey.net/streaming/examples/bipbop_4x3/"
+         + "bipbop_4x3_variant.m3u8", PlayerActivity.TYPE_HLS),
+diff --git a/library/src/main/java/com/google/android/exoplayer/hls/HlsChunkSource.java b/library/src/main/java/com/google/android/exoplayer/hls/HlsChunkSource.java
+index 81eae62..ec45609 100644
+--- a/library/src/main/java/com/google/android/exoplayer/hls/HlsChunkSource.java
++++ b/library/src/main/java/com/google/android/exoplayer/hls/HlsChunkSource.java
+@@ -462,10 +462,16 @@ public class HlsChunkSource {
+   }
+ 
+   private int getLiveStartChunkMediaSequence(int variantIndex) {
++
++    /** Hack: start playlists without end list from beginning insetad of playing from last chunk */
++    return 0;
++
++    /*
+     // For live start playback from the third chunk from the end.
+     HlsMediaPlaylist mediaPlaylist = mediaPlaylists[variantIndex];
+     int chunkIndex = mediaPlaylist.segments.size() > 3 ? mediaPlaylist.segments.size() - 3 : 0;
+     return chunkIndex + mediaPlaylist.mediaSequence;
++    */
+   }
+ 
+   private MediaPlaylistChunk newMediaPlaylistChunk(int variantIndex) {
+-- 
+1.8.3.msysgit.0
+
