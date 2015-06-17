@@ -462,10 +462,16 @@ public class HlsChunkSource {
   }
 
   private int getLiveStartChunkMediaSequence(int variantIndex) {
+
+    /** Hack: start playlists without end list from beginning insetad of playing from last chunk */
+    return 0;
+
+    /*
     // For live start playback from the third chunk from the end.
     HlsMediaPlaylist mediaPlaylist = mediaPlaylists[variantIndex];
     int chunkIndex = mediaPlaylist.segments.size() > 3 ? mediaPlaylist.segments.size() - 3 : 0;
     return chunkIndex + mediaPlaylist.mediaSequence;
+    */
   }
 
   private MediaPlaylistChunk newMediaPlaylistChunk(int variantIndex) {

@@ -42,6 +42,8 @@ import java.util.Locale;
 
   }
 
+
+
   public static final Sample[] YOUTUBE_DASH_MP4 = new Sample[] {
     new Sample("Google Glass",
         "http://www.youtube.com/api/manifest/dash/id/bf5bb2419360daf1/source/youtube?"
@@ -111,6 +113,8 @@ import java.util.Locale;
   };
 
   public static final Sample[] HLS = new Sample[] {
+    new Sample("MYVIDEO",
+                  "http://tbs03-edge04.itdc.ge/rustavi2hqnew/index-1434549600-now.m3u8?token=S_fYuWagw4JVnjvb6F-c-uY1C1zaC2LSfAQJ3x6EHF5zs2rDDJDN85jtQQs84gufnvn7eZ1NiT9mf3Qv3CnmnQ", PlayerActivity.TYPE_HLS),
     new Sample("Apple master playlist",
         "https://devimages.apple.com.edgekey.net/streaming/examples/bipbop_4x3/"
         + "bipbop_4x3_variant.m3u8", PlayerActivity.TYPE_HLS),
