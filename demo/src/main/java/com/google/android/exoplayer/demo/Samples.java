@@ -111,6 +111,7 @@ import java.util.Locale;
   };
 
   public static final Sample[] HLS = new Sample[] {
+
     new Sample("Apple master playlist",
         "https://devimages.apple.com.edgekey.net/streaming/examples/bipbop_4x3/"
         + "bipbop_4x3_variant.m3u8", DemoUtil.TYPE_HLS),
